@@ -19,22 +19,22 @@ import com.sreenutech.rewards.entity.Article;
 import com.sreenutech.rewards.service.IArticleService;
 
 @Controller
-@RequestMapping("user")
+@RequestMapping("/user")
 public class ArticleController {
 	@Autowired
 	private IArticleService articleService;
 	
-	@GetMapping("article/{id}")
+	@GetMapping("/article/{id}")
 	public ResponseEntity<Article> getArticleById(@PathVariable("id") Long id) {
 		Article article = articleService.getArticleById(id);
 		return new ResponseEntity<Article>(article, HttpStatus.OK);
 	}
-	@GetMapping("articles")
+	@GetMapping("/articles")
 	public ResponseEntity<List<Article>> getAllArticles() {
 		List<Article> list = articleService.getAllArticles();
 		return new ResponseEntity<List<Article>>(list, HttpStatus.OK);
 	}
-	@PostMapping("article")
+	@PostMapping("/article")
 	public ResponseEntity<Void> addArticle(@RequestBody Article article, UriComponentsBuilder builder) {
 		Article savedArticle = articleService.addArticle(article);  
         HttpHeaders headers = new HttpHeaders();
